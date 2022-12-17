@@ -121,6 +121,7 @@
                     <?php
                     if ($secureHash == $vnp_SecureHash) {
                         if ($_GET['vnp_ResponseCode'] == '00') {
+                            mysqli_query($conn, "UPDATE checkout SET status = '1' WHERE checkout_id = '{$_SESSION['id_thanhtoan']}';");
                             echo "<span style='color:Green; font-weight: bold;'>Thanh Toán Thành Công</span>";
                         } else {
                             echo "<span style='color:red'>Thanh Toán Không Thành Công</span>";

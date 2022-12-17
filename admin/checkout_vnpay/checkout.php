@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include("dbConnection.php");
+include("../../dbConnection.php");
 $dbConnection = new dbConnection();
 $conn = $dbConnection->getConnection();
 $id = -1;
@@ -79,13 +79,6 @@ if (isset($_GET["id"])) {
                     <label class="me-3">TỔNG TIỀN</label>
                     <div>
                         <?php
-                        include("../../dbConnection.php");
-                        $dbConnection = new dbConnection();
-                        $conn = $dbConnection->getConnection();
-                        $id = -1;
-                        if (isset($_GET["id"])) {
-                            $id = intval($_GET['id']);
-                        }
                         $sql = "SELECT total_money FROM checkout WHERE checkout_id = $id";
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result);
