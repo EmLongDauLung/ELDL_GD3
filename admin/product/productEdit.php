@@ -34,13 +34,16 @@ $data = mysqli_fetch_assoc($query);
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white navlinks" href="#">Home</a>
+                        <a class="nav-link text-white navlinks" href="../home.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white navlinks" href="../order/order.php">Đơn Hàng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white navlinks" href="../../addProducts.php">Product</a>
+                        <a class="nav-link text-white navlinks" href="addProducts.php">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white navlinks" href="../user/dashboard-fix.php">User</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white navlinks" href="../../index.php">Return to shop</a>

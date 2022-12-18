@@ -34,12 +34,13 @@
                     echo "  <td class='text-center'>" . $row['address'] . "</td>";
                     echo "  <td class='text-center'>" . $row['phone_nb'] . "</td>";
                     echo "  <td class='text-center'>" . $row['createdate'] . "</td>";
-                    echo "  <td class='text-center'>" . $row['total_money'] . "</td>";
+                    echo "  <td class='text-center'>" . $row['total_money'] . " $</td>";
                     echo "  <td class='text-center'>
                                 <a href='order_detail_products.php?id={$row['checkout_id']}' style=' text-decoration: none;color: #397224;'>Xem</a>
                             </td>";
                     if ($row['status'] == 0) {
                         $_SESSION['id_thanhtoan'] = $row['checkout_id'];
+                        $_SESSION['total_money'] = $row['total_money'];
                         echo "  <td class='text-center'>
                             <a href='admin/checkout_vnpay/checkout.php?id={$row['checkout_id']}' style='text-decoration: none; color: #397224;'>Thanh toán</a>
                         </td>";
