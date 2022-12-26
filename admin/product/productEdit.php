@@ -40,7 +40,7 @@ $data = mysqli_fetch_assoc($query);
                         <a class="nav-link text-white navlinks" href="../order/order.php">Đơn Hàng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white navlinks" href="../../addProducts.php">Product</a>
+                        <a class="nav-link text-white navlinks" href="addProducts.php">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white navlinks" href="../../index.php">Return to shop</a>

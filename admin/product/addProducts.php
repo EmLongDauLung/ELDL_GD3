@@ -98,7 +98,7 @@ $conn = $dbConnection->getConnection();
                     echo "<td><p>" . $row['type'] . "</p></td>";
                     echo "<td><p>" . $row['trademark_id'] . "</p></td>";
                     echo "<td><img src='../../assets/img/" . $row['image'] . "' height=100></td>";
-                    echo '<td><a href="admin/product/productEdit.php?id=' . $row['product_id'] . '">Edit</a></td>  <td><a href="posts_delete.php?id=' . $row['product_id'] . '">Delete</a></td>';
+                    echo '<td><a href="productEdit.php?id=' . $row['product_id'] . '">Edit</a></td>  <td><a href="product_delete.php?id=' . $row['product_id'] . '">Delete</a></td>';
                     echo "</tr>";
                 }
                 ?>

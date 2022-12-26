@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../assets/fontawesome-free-6.1.1/css/all.min.css">
     <link rel="icon" href="../../assets/img/small_logo.png">
     <link rel="stylesheet" href="../../assets/css/manageruser.css">
+    <link rel="stylesheet" href="main.css">
     <style type="text/css">
         .btn {
             margin: 0px 0 16px 0px;
@@ -44,7 +45,7 @@
     </script>
 </head>
     <!-- NAV BAR -->
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg navbar__option">
         <div class="container-fluid ">
             <a class="navbar-brand text-white" href="#">ADMIN</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

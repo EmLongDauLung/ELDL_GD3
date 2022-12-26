@@ -1,5 +1,6 @@
 <?php
     unset($_SESSION["user_id"]);
+    unset($_SESSION["admin_id"]);
     unset($_SESSION["username"]);
     unset($_SESSION["email"]);
     unset($_SESSION["fullname"]);

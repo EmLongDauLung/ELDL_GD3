@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
                         $orderproducts[] = $row;
                         $total += $row['price'] * $_POST['quantity'][$row['product_id']];
                     }
-                    $insert_order = mysqli_query($conn, "INSERT INTO `checkout` (`user_id`, `fullname`, `address`, `phone_nb`, `total_money`, `note`,`createdate`, `updatedate`) VALUES ('" . $_SESSION['user_id'] . "', '" . $_POST['name__user'] . "', '" . $_POST['address'] . "' ,'" . $_POST['phone__number'] . "', '$total', '" . $_POST['note'] . "','" . date("Y-m-d H:i:s") . "', '" . date("Y-m-d H:i:s") . "');");
+                    $insert_order = mysqli_query($conn, "INSERT INTO `checkout` (`user_id`, `fullname`, `address`, `phone_nb`, `total_money`, `note`,`createdate`, `updatedate`,`status`) VALUES ('" . $_SESSION['user_id'] . "', '" . $_POST['name__user'] . "', '" . $_POST['address'] . "' ,'" . $_POST['phone__number'] . "', '$total', '" . $_POST['note'] . "','" . date("Y-m-d H:i:s") . "', '" . date("Y-m-d H:i:s") . "', 0);");
                     $orderID = $conn->insert_id;
                     $insertString = "";
                     foreach ($orderproducts as $key => $products) {

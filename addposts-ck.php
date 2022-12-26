@@ -17,7 +17,7 @@ if (isset($_POST["btn_submit"])) {
 	$sql = "INSERT INTO posts(title, content, user_id, is_public, createdate, updatedate ) VALUES ( '$title', '$content', '$user_id', '$is_public', now(), now())";
 	// thực thi câu $sql với biến conn lấy từ file connection.php
 	mysqli_query($conn, $sql);
-	echo '<script language="javascript">alert("Đăng bài thành công!"); window.location="addposts-ck.php";</script>';
+	echo '<script language="javascript">alert("Đăng bài thành công!"); window.location="posts.php";</script>';
 }
 if (isset($_POST['photoUp'])) {
 	//
@@ -49,7 +49,7 @@ if (isset($_POST['photoUp'])) {
 	$target = "./assets/img/".basename($image);
 	$sql = "INSERT INTO posts( title, content, image,user_id, is_public, createdate, updatedate ) VALUES ( '$title', '$content', '$image', '$user_id',  '$is_public' , now(), now())";
 	if (mysqli_query($conn, $sql) && move_uploaded_file($_FILES['imageUpload']['tmp_name'], $target) && empty($errors) == true) {
-		echo '<script language="javascript">alert("Đăng bài viết thành công!");</script>';
+		echo '<script language="javascript">alert("Đăng bài viết thành công!"); window.location="posts.php";</script>';
 	} else {
 		echo '<script language="javascript">alert("Có lỗi trong quá trình xử lý");</script>';
 	}
