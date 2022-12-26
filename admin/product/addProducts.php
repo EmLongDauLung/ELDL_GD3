@@ -15,15 +15,15 @@ $conn = $dbConnection->getConnection();
         <table cellspacing="5" cellpadding="5" class="table table-bordered  w-600">
             <tr>
                 <td class="w-25">Tên sản phẩm </td>
-                <td width="w-auto"><input type="text" name="title" class="w-75" require /></td>
+                <td width="w-auto"><input type="text" name="title" class="w-75" required /></td>
             </tr>
             <tr>
                 <td>Số lượng</td>
-                <td><input type="number" name="quantity" class="w-25" placeholder="0-1000" require></td>
+                <td><input type="number" name="quantity" class="w-25" placeholder="0-1000" required></td>
             </tr>
             <tr>
                 <td>Giá</td>
-                <td><input type="number" name="oldprice" class="w-25" require min="0"></td>
+                <td><input type="number" name="oldprice" class="w-25" required min="0"></td>
             </tr>
             <tr>
                 <td>Giá khuyến mãi</td>
@@ -31,15 +31,15 @@ $conn = $dbConnection->getConnection();
             </tr>
             <tr>
                 <td>Nội dung</td>
-                <td><textarea name="content" id="content" placeholder="Đây là nội dung sản phẩm..." class="noidung w-75" rows="10" cols="80" require></textarea></td>
+                <td><textarea name="content" id="content" placeholder="Đây là nội dung sản phẩm..." class="noidung w-75" rows="10" cols="80" required></textarea></td>
             </tr>
             <tr>
                 <td>Đánh giá (0-5)</td>
-                <td><input type="number" name="star" class="w-25" min="0" max="5" require></td>
+                <td><input type="number" name="star" class="w-25" min="0" max="5" required></td>
             </tr>
             <tr>
                 <td>Loại</td>
-                <td><input type="text" name="type" class="w-25" require></td>
+                <td><input type="text" name="type" class="w-25" required></td>
             </tr>
             <tr>
                 <td>Hãng sản xuất</td>
@@ -98,7 +98,8 @@ $conn = $dbConnection->getConnection();
                     echo "<td><p>" . $row['type'] . "</p></td>";
                     echo "<td><p>" . $row['trademark_id'] . "</p></td>";
                     echo "<td><img src='../../assets/img/" . $row['image'] . "' height=100></td>";
-                    echo '<td><a href="productEdit.php?id=' . $row['product_id'] . '">Edit</a></td>  <td><a href="product_delete.php?id=' . $row['product_id'] . '">Delete</a></td>';
+                    echo "<td><a href='productEdit.php?id='" . $row['product_id'] . "''>Edit</a></td>";
+                    echo "<td><a href='product_delete.php?id='" . $row['product_id'] . "''>Delete</a></td>";
                     echo "</tr>";
                 }
                 ?>

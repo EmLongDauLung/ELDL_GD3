@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -93,17 +93,17 @@ session_start();
                                         </div>
                                     </a>
                                 ";
-                        } 
-                        elseif ($_SESSION['admin_id'] != NULL and ($_SESSION['user_id'] == NULL)){
+                        }
+                        elseif ($_SESSION['admin_id'] != NULL and ($_SESSION['user_id'] == NULL)) {
                             echo "
-                                <a href='./admin/user/dashboard-fix.php' class='login_cart-item-link'>
+                                <a href='admin/home.php' class='login_cart-item-link'>
                                     <div class='login-cart_item'>
                                         <i class='fa-solid fa-user'></i>
                                     </div>
                                 </a>
                             ";
                             echo "<span class='login__usersname'>{$_SESSION['fullname']}</span>";
-                        }                        
+                        }
                         elseif ($_SESSION['user_id'] != NULL) {
                             echo "
                                     <a href='profile.php' class='login_cart-item-link'>
@@ -210,7 +210,7 @@ session_start();
                         <a class="link_decor_remover hover-link" href="./posts.php">Blog</a>
                     </li>
                     <li class="menu_right-item">
-                        <a class="link_decor_remover hover-link" href="./AllProduct.php">Cửa hàng</a>
+                        <a class="link_decor_remover hover-link" href="AllProduct.php">Cửa hàng</a>
                     </li>
                     <li class="menu_right-item">
                         <a class="link_decor_remover hover-link" href="order_info.php">Đơn hàng</a>

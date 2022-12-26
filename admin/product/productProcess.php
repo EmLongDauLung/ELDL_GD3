@@ -88,7 +88,7 @@ if (isset($_POST['btn_edit_normal'])) {
 
     $sql = "UPDATE products SET title = '$title', content = '$content', oldprice = '$oldprice', price = '$price', star = '$star', type = '$type', trademark_id = '$trademark_id', quantity ='$quantity' WHERE product_id = '$id'";
     if (mysqli_query($conn, $sql) && empty($errors) == true) {
-        echo '<script language="javascript">alert("Sửa thành công!");</script>';
+        echo '<script language="javascript">alert("Sửa thành công");window.location.replace("addProducts.php");</script>';
     } else {
         echo '<script language="javascript">alert("Có lỗi trong quá trình xử lý");</script>';
     }

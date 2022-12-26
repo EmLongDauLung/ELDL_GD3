@@ -46,10 +46,10 @@ if (isset($_POST['photoUp'])) {
 	if ($file_size > 2097152) {
 		$errors[] = 'Kích thước file không được lớn hơn 2MB';
 	}
-	$target = "./assets/img/".basename($image);
-	$sql = "INSERT INTO posts( title, content, image,user_id, is_public, createdate, updatedate ) VALUES ( '$title', '$content', '$image', '$user_id',  '$is_public' , now(), now())";
+	$target = "./assets/img/" . basename($image);
+	$sql = "INSERT INTO posts( title, content, image, user_id, is_public, createdate, updatedate ) VALUES ( '$title', '$content', '$image', '$user_id',  '$is_public' , now(), now())";
 	if (mysqli_query($conn, $sql) && move_uploaded_file($_FILES['imageUpload']['tmp_name'], $target) && empty($errors) == true) {
-		echo '<script language="javascript">alert("Đăng bài viết thành công!"); window.location="posts.php";</script>';
+		echo '<script language="javascript">alert("Đăng bài viết thành công!");window.location="posts.php";</script>';
 	} else {
 		echo '<script language="javascript">alert("Có lỗi trong quá trình xử lý");</script>';
 	}
@@ -93,7 +93,7 @@ if (isset($_POST['photoUp'])) {
 
 			</table>
 		</form>
-	
+
 	</div>
 </body>
 <script>

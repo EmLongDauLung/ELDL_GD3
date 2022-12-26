@@ -26,6 +26,7 @@ $total = 0;
 if (isset($_SESSION['total_money'])) {
     $total_money = $_SESSION['total_money'];
 }
+var_dump($total_money);
 // if (is_array($cart) || is_object($cart))
 //     foreach ($cart as $id => $each) :
 //         $sum = $each['gia'] * $each['so_luong'];

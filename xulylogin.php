@@ -90,7 +90,7 @@ if (isset($_POST["admin_login"])) {
 				$is_block = $_SESSION['is_block'];
 				// Kiểm tra quyền của người đó có phải là admin hay không
 				if ($permission == '1' && $is_block == '0') {
-					header('Location: ./admin/user/dashboard-fix.php');
+					header('Location: ./admin/home.php');
 				} else {
 					echo '<script language="javascript">alert("Tài khoản admin này đã bị vô hiệu hóa!"); window.location="adlogin.php";</script>';
 				}
