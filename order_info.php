@@ -3,10 +3,13 @@
     <div class="container__profile">
         <div class="container__title">
             <div class="container__title__item">
-                <a href="profile.php" class="container__profile__title">Bài viết của bạn</a>
+                <a href="profile.php?id=<?php echo $_SESSION['user_id']?>" class="container__profile__title">Bài viết của bạn</a>
             </div>
             <div class="container__title__item">
-                <a href="./order_info.php" class="container__profile__title">Đơn hàng của bạn</a>
+                <a href="./order_info.php?id=<?php echo $_SESSION['user_id']?>" class="container__profile__title">Đơn hàng của bạn</a>
+            </div>
+            <div class="container__title__item">
+                <a href="changepass.php" class="container__profile__title">Đổi mật khẩu</a>
             </div>
         </div>
         <div class="info__order__table">
@@ -25,7 +28,10 @@
                 // include './dbConnection.php';
                 // $dbConnection = new dbConnection();
                 // $conn = $dbConnection->getConnection();
-                $sql = "SELECT * FROM checkout WHERE user_id = {$_SESSION['user_id']};";
+                if (isset($_GET["id"])) {
+                    $id = $_GET['id'];
+                }
+                $sql = "SELECT * FROM checkout WHERE user_id = $id;";
                 $result = mysqli_query($conn, $sql);
                 while ($row = mysqli_fetch_array($result)) {
                     echo "<tr>";

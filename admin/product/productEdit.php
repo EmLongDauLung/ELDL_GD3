@@ -1,60 +1,23 @@
 <?php
 session_start();
-// include "./header.php";
+include "../header.php";
 include "../../permission.php";
 include '../../dbConnection.php';
 $dbConnection = new dbConnection();
 $conn = $dbConnection->getConnection();
 $id = -1;
-if (isset($_GET["id"])) {
-    $id = intval($_GET['id']);
+if (isset($_POST['btn_optionEdit'])) {
+    $id = $_POST['btn_optionEdit'];
 }
 
 $sql = "select * from products where product_id = '$id'";
 $query = mysqli_query($conn, $sql);
 $data = mysqli_fetch_assoc($query);
 ?>
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ADMIN PAGE</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container-fluid ">
-            <a class="navbar-brand text-white" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-white navlinks" href="../home.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white navlinks" href="../order/order.php">Đơn Hàng</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white navlinks" href="addProducts.php">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white navlinks" href="../user/dashboard-fix.php">User</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white navlinks" href="../../index.php">Return to shop</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="posts">
-        <form enctype="multipart/form-data" method="post" class="form m-3">
+        <form enctype="multipart/form-data" method="post" class="form m-3" action="">
             <table cellspacing="5" cellpadding="5" class="table table-bordered  w-600">
+                <input type="hidden" value="<?php echo $data['product_id'] ?>" name="id">
                 <tr>
                     <td class="w-25">Tên sản phẩm </td>
                     <td width="w-auto"><input type="text" name="title" class="w-75" require value="<?php echo $data['title'] ?>" /></td>
@@ -103,18 +66,18 @@ $data = mysqli_fetch_assoc($query);
                     <td>Ảnh (only png, jpeg or jpg)</td>
                     <td>
                         <input type="hidden" name="size" value="1000000">
-                        <input type="file" name="image" class="hinhanh" require value="../../assets/img/<?php echo $data['type'] ?>"><br /><br />
+                        <img src="../../assets/img/<?php echo $data['image'] ?>" alt="" style="width: 150px; height: auto;">
+                        <input type="file" name="image" class="hinhanh"><br /><br />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" name="btn_edit" value="Save" class="btn btn-secondary" />
-                        <input type="submit" name="btn_edit_normal" value="Save No Image" class="btn btn-secondary" />
+                        <input type="submit" name="btn_edit" value="Hoàn tất" class="btn btn-secondary" />
                     </td>
                 </tr>
             </table>
+            <?php require_once "productProcess.php" ?>
         </form>
-        <?php require 'productProcess.php'; ?>
     </div>
     <script>
         CKEDITOR.replace('post_content');

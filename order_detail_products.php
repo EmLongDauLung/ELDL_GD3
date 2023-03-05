@@ -2,7 +2,7 @@
 <div class="container__profile">
     <div class="container__title">
         <div class="container__title__item">
-            <a href="./order_info.php" class="container__profile__title">Quay lại</a>
+            <a href="./order_info.php?id=<?php echo $_SESSION['user_id']?>" class="container__profile__title">Quay lại</a>
         </div>
     </div>
     <div class="info__order__table">

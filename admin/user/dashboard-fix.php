@@ -17,7 +17,7 @@ $conn = $dbConnection->getConnection();
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <td>ID</td>
+                <!-- <td></td> -->
                 <td>Username</td>
                 <td>Password</td>
                 <td>Fullname</td>
@@ -30,25 +30,23 @@ $conn = $dbConnection->getConnection();
         <tbody>
             <?php
             while ($data = mysqli_fetch_array($query)) {
-                $i = 1;
                 $id = $data['user_id'];
             ?>
                 <tr>
-                    <!-- <td><?php echo $i; ?></td> -->
-                    <td><?php echo $data['user_id']; ?></td>
-                    <td><?php echo $data['username']; ?></td>
-                    <td><?php echo $data['password']; ?></td>
-                    <td><?php echo $data['fullname']; ?></td>
-                    <td><?php echo $data['email']; ?></td>
-                    <td><?php echo ($data['is_block'] == 1) ? "Bị khóa" : "Không bị khóa"; ?></td>
-                    <td><?php echo ($data['permision'] == 0) ? "Thành viên thường" : "Admin"; ?></td>
-                    <td>
-                        <a href="fix_user.php?id=<?php echo $id; ?>"><i class='fa-solid fa-wrench icon_option'></i></a>
-                        <a href="del_user.php?id_delete=<?php echo $id; ?>"><i class='fa-solid fa-trash icon_option'></i></a>
-                    </td>
+                    <form action="edit_user.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $data['user_id']; ?>">
+                        <td><?php echo $data['username']; ?></td>
+                        <td><?php echo $data['password']; ?></td>
+                        <td><?php echo $data['fullname']; ?></td>
+                        <td><?php echo $data['email']; ?></td>
+                        <td><?php echo ($data['is_block'] == 1) ? "Bị khóa" : "Không bị khóa"; ?></td>
+                        <td><?php echo ($data['permision'] == 0) ? "Thành viên thường" : "Admin"; ?></td>
+                        <td>
+                            <button type="submit" name="btn_submit"><i class='fa-solid fa-wrench icon_option'></i></button>
+                        </td>
+                    </form>
                 </tr>
             <?php
-                $i++;
             }
             ?>
         </tbody>

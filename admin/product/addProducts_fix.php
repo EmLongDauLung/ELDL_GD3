@@ -11,7 +11,7 @@ $conn = $dbConnection->getConnection();
 <div>
     <!-- ADD form -->
     <h2 class="ms-3 mt-2">Thêm sản phẩm</h2>
-    <form enctype="multipart/form-data" method="POST" class="form m-3" action="">
+    <form enctype="multipart/form-data" method="POST" class="form m-3" action="productProcess.php">
         <table cellspacing="5" cellpadding="5" class="table table-bordered  w-600">
             <tr>
                 <td class="w-25">Tên sản phẩm </td>
@@ -47,9 +47,7 @@ $conn = $dbConnection->getConnection();
                     <!-- <input type="option" name="star" class="w-25" require> -->
                     <select id="brand" require name="trademark" class="p-2">
                         <option value="1">Lego</option>
-                        <option value="2">Shoppe</option>
-                        <option value="3">Tiki</option>
-                        <option value="4">Lazada</option>
+                        <option value="2">Marvel</option>
                     </select>
                 </td>
             </tr>
@@ -61,7 +59,7 @@ $conn = $dbConnection->getConnection();
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="submit" name="btn_submit_add" value="Thêm sản phẩm" class="btn btn-secondary" /></td>
+                <td colspan="2" align="center"><input type="submit" name="btn_submit" value="Thêm sản phẩm" class="btn btn-secondary" /></td>
             </tr>
         </table>
     </form>
@@ -104,7 +102,7 @@ $conn = $dbConnection->getConnection();
                             </form>
                         </td>
                         <td>
-                            <form action="" method="POST">
+                            <form action="productProcess.php" method="POST">
                                 <button type="submit" name="btn_optionDel" value="<?php echo $row['product_id'] ?>">Xóa</button>
                             </form>
                         </td>
@@ -115,7 +113,7 @@ $conn = $dbConnection->getConnection();
             </table>
         </div>
     </div>
-    <?php require 'productProcess.php'; ?>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

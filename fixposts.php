@@ -1,11 +1,8 @@
 <?php
 // session_start(); 
-include "./header.php";
+// include "./header.php";
 include "./permission.php";
-$id = -1;
-if (isset($_GET["id"])) {
-	$id = intval($_GET['id']);
-}
+$id = $_POST['submit_fix'];
 // $id = $_GETp['id'];
 
 $sql = "select * from posts where posts_id = '$id'";
@@ -15,11 +12,13 @@ $data = mysqli_fetch_assoc($query);
 
 <body>
 	<div class="posts">
-		<form action="" method="POST">
+		<form action="updateposts.php" method="POST">
 			<table class="table table-bordered table-striped">
+				<input type="hidden" name="id" value="<?php echo $data['posts_id'] ?>">
 				<tr>
 					<td nowrap="nowrap">Tiêu đề bài viết :</td>
-					<td><input type="text" id="title" name="title" value="<?php echo $data['title'] ?>">
+					<td>
+						<input type="text" id="title" name="title" value="<?php echo $data['title'] ?>">
 					</td>
 				</tr>
 				<tr>
@@ -43,4 +42,3 @@ $data = mysqli_fetch_assoc($query);
 	// instance, using default configuration.
 	CKEDITOR.replace('post_content');
 </script>
-<?php include "./footer.php" ?>

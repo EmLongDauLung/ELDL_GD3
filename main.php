@@ -90,7 +90,7 @@
                         while ($data = mysqli_fetch_assoc($query)) {
                             echo "
                                 <div class='body_bot-ratings-item'>
-                                    <a href='#'>
+                                    <a href='order_detail.php?id={$data['product_id']}'>
                                         <img src='./assets/img/{$data['image']}' class='img_ratings-item'>
                                     </a>
                                     <div class='body_bot-ratings-info'>

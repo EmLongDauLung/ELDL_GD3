@@ -1,84 +1,75 @@
-<?php include("header.php") ?>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<body>
-<button type='button' name='deleteposts'>
+<?php include("./header.php") ?>
+<?php 
+// $id_posts = -1;
+    // if(isset($_POST['submit_more'])){
+    //     $id_posts = $_POST['submit_more'];
+        
+    //     require("showposts.php");
+    //     // $sql = $conn->prepare('SELECT * FROM posts WHERE posts_id = ?');
+    //     // $sql->bind_param("i", $id_posts);
+    //     // $sql->execute();
+        
+    //     // // $sql->close();
+    // }
+    // elseif(isset($_POST['submit_fix'])){
+    //     $id_posts = $_POST['submit_fix'];
+    //     require("fixposts.php");
+    //     echo $id_posts;
+    // }
+    // elseif(isset($_POST['submit_del'])){
+    //         $id_posts = $_POST['submit_del'];
+    //         require("deleteposts.php");
+    //         echo $id_posts;
+    //     }
+    
+?>
 
-</button>
-<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-    Launch demo modal
-</button>
-<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <h1 class='modal-title fs-5' id='exampleModalLabel'>Modal title</h1>
-                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+<body class="container__body">
+    <div class="container__profile">
+        <div class="container__title">
+            <div class="container__title__item">
+                <a href="" class="container__profile__title">Bài viết của bạn</a>
             </div>
-            <div class='modal-body'>
-                <div>hello</div>
-            </div>
-            <div class='modal-footer'>
-                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                <button type='button' class='btn btn-primary'>Save changes</button>
+            <div class="container__title__item">
+                <a href="./order_info.php" class="container__profile__title">Giỏ hàng của bạn</a>
             </div>
         </div>
-    </div>
-</div>
-<!--  -->
-<!--  -->
-<button type="button" class="btn btn-danger" onclick="confirmDelete(this);">Delete</button>
-        <script>
-            function confirmDelete(self) {
-                var id = self.getAttribute("data-id");
-
-                document.getElementById("form-delete-user").id.value = id;
-                $("#myModal").modal("show");
-            }
-        </script>
-        <!--  -->
-        <div id="myModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Delete User</h4>
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete this user ?</p>
-                        <form method="POST" action="" id="form-delete-user">
-                            <input type="hidden" name="id">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" form="form-delete-user" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--  -->
-        <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-        Launch demo modal
-    </button>
-    <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h1 class='modal-title fs-5' id='exampleModalLabel'>Modal title</h1>
-                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                </div>
-                <div class='modal-body'>
-                    <div>hello</div>
-                </div>
-                <div class='modal-footer'>
-                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                    <button type='button' class='btn btn-primary'>Save changes</button>
-                </div>
-            </div>
-        </div>
+        <table class='table table-hover table__profile'>
+            <thead>
+                <tr>
+                    <th scope='col'></th>
+                    <th scope='col'>Title</th>
+                    <th scope='col'>Image</th>
+                    <th scope='col'>CreateDate</th>
+                    <th scope='col'>Content</th>
+                    <th scope='col'>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql = "select * from posts where user_id = '{$_SESSION['user_id']}'";
+                $query = mysqli_query($conn, $sql);
+                while ($data = mysqli_fetch_array($query)) {
+                    echo "
+                    <tr>
+                    <form action='info_posts.php' method='POST'>
+                        <th scope='row'><input type='hidden' name='id' value='{$data['posts_id']}'></th>
+                        
+                        <td>{$data['title']}</td>
+                        <td><img src='./assets/img/{$data['image']}' alt=''style='width: 50px; height:auto'></td>
+                        <td>{$data['createdate']}</td>
+                        <td>" . substr($data['content'], 0, 100) . "</td>
+                        <td>
+                            <button type='submit' name='submit_more'><i class='fa-solid fa-eye'></i></button>
+                        </td>    
+                    </form> 
+                    </tr>  
+                    ";
+                    
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
 </body>
-
-</html>
+<?php include("./footer.php") ?>

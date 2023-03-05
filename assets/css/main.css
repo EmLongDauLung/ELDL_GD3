@@ -107,6 +107,7 @@ html{
     width: 570px;
     height: 44px;
     display: flex;
+    margin: auto;
 }
 .input_search{
     width: 88%;
@@ -123,7 +124,7 @@ html{
     border: solid 1px #72af5c;
 }
 .search-item{
-    width: 12%;
+    width: 100%;
     height: 100%;
     border: solid 1px #e7e9ec;
     border-top-right-radius: 30px;
@@ -302,6 +303,7 @@ html{
     padding: 16px 0;
     box-shadow: inset 0 8px 25px -25px black;
     background-color: rgb(255, 255, 255);
+    /* display: none; */
 }
 .header_bot-review{
     width: 1100px;

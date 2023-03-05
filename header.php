@@ -15,6 +15,7 @@ session_start();
     <link rel="stylesheet" href="./assets/css/cart.css">
     <link rel="stylesheet" href="./assets/css/order_detail.css">
     <link rel="stylesheet" href="./assets/css/profile.css">
+    <link rel="stylesheet" href="./assets/css/search.css">
     <script src="./assets/ckeditor/ckeditor.js"></script>
     <!-- <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap-grid.css"> -->
     <link rel="stylesheet" href="./assets/bootstrap-5.2.2-dist/css/bootstrap.css">
@@ -27,7 +28,7 @@ session_start();
     <title>BOT STORE</title>
 </head>
 
-<body>
+<header>
     <!-- header -->
     <div id="header">
         <!-- header top -->
@@ -73,47 +74,84 @@ session_start();
                         <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                     </a>
                 </div>
-                <div class="search">
-                    <input type="text" placeholder="Tìm Kiếm..." class="input_search">
-                    <div class="search-item">
-                        <i class="fa-solid fa-magnifying-glass icon-search"></i>
-                    </div>
+                <div class="">
+                    <form action="search.php" method="GET">
+                        <div class="search">
+                            <input type="text" placeholder="Tìm Kiếm..." class="input_search" name="search">
+                            <div class="">
+                                <button class="search-item" type="submit" name="ok">
+                                    <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </form>
                 </div>
                 <div class="login__cart__logout">
                     <div class="login__cart__logout-item login">
                         <?php
-                        include("dbConnection.php");
-                        $dbConnection = new dbConnection();
-                        $conn = $dbConnection->getConnection();
-                        if ($_SESSION['user_id'] == NULL and $_SESSION['admin_id'] == NULL) {
-                            echo "
-                                    <a href='login.php' class='login_cart-item-link'>
+                            include("./dbConnection.php");
+                            $dbConnection = new dbConnection();
+                            $conn = $dbConnection->getConnection();
+                            // $cookie_check = str_replace("PHPSESSID=", "", $_SERVER["HTTP_COOKIE"]);
+                            if ($_SESSION['user_id'] == NULL and $_SESSION['admin_id'] == NULL) {
+                                echo "
+                                        <a href='login.php' class='login_cart-item-link'>
+                                            <div class='login-cart_item'>
+                                                <i class='fa-solid fa-user'></i>
+                                            </div>
+                                        </a>
+                                    ";
+                            }
+                            elseif (($_SESSION['admin_id'] != NULL) and ($_SESSION['user_id'] == NULL)) {
+                                echo "
+                                    <a href='admin/home.php' class='login_cart-item-link'>
                                         <div class='login-cart_item'>
                                             <i class='fa-solid fa-user'></i>
                                         </div>
                                     </a>
                                 ";
-                        }
-                        elseif ($_SESSION['admin_id'] != NULL and ($_SESSION['user_id'] == NULL)) {
-                            echo "
-                                <a href='admin/home.php' class='login_cart-item-link'>
-                                    <div class='login-cart_item'>
-                                        <i class='fa-solid fa-user'></i>
-                                    </div>
-                                </a>
-                            ";
-                            echo "<span class='login__usersname'>{$_SESSION['fullname']}</span>";
-                        }
-                        elseif ($_SESSION['user_id'] != NULL) {
-                            echo "
-                                    <a href='profile.php' class='login_cart-item-link'>
-                                        <div class='login-cart_item'>
-                                            <i class='fa-solid fa-user'></i>
-                                        </div>
-                                    </a>
-                                ";
-                            echo "<span class='login__usersname'>{$_SESSION['fullname']}</span>";
-                        }
+                                echo "<span class='login__usersname'>{$_SESSION['fullname']}</span>";
+                            }
+                            elseif ($_SESSION['user_id'] != NULL and $_SESSION['admin_id'] == NULL) {
+                                echo "
+                                        <a href='profile.php?id={$_SESSION['user_id']}' class='login_cart-item-link'>
+                                            <div class='login-cart_item'>
+                                                <i class='fa-solid fa-user'></i>
+                                            </div>
+                                        </a>
+                                    ";
+                                echo "<span class='login__usersname'>{$_SESSION['fullname']}</span>";
+                            }
+                            // elseif ($_SESSION['user_id'] != NULL && $_SESSION["sessionid"] == '') {
+                            //     echo "
+                            //             <a href='profile.php?id={$_SESSION['user_id']}' class='login_cart-item-link'>
+                            //                 <div class='login-cart_item'>
+                            //                     <i class='fa-solid fa-user'></i>
+                            //                 </div>
+                            //             </a>
+                            //         ";
+                            //     echo "<span class='login__usersname'>Hi, {$_SESSION['fullname']}</span>";
+                            // }
+                            // elseif ($_SESSION['user_id'] != NULL && $_SESSION["sessionid"] == $cookie_check){
+                            //     echo "
+                            //             <a href='profile.php?id={$_SESSION['user_id']}' class='login_cart-item-link'>
+                            //                 <div class='login-cart_item'>
+                            //                     <i class='fa-solid fa-user'></i>
+                            //                 </div>
+                            //             </a>
+                            //         ";
+                            //     echo "<span class='login__usersname'>Welcome back {$_SESSION['fullname']}</span>";
+                            // }
+                            // else{
+                            //     echo "
+                            //     <a href='login.php' class='login_cart-item-link'>
+                            //         <div class='login-cart_item'>
+                            //             <i class='fa-solid fa-user'></i>
+                            //         </div>
+                            //     </a>
+                            //     ";
+                            // }
                         ?>
                     </div>
                     <div class="login__cart__logout-item cart">
@@ -213,10 +251,13 @@ session_start();
                         <a class="link_decor_remover hover-link" href="AllProduct.php">Cửa hàng</a>
                     </li>
                     <li class="menu_right-item">
-                        <a class="link_decor_remover hover-link" href="order_info.php">Đơn hàng</a>
+                        <a class="link_decor_remover hover-link" href="order_info.php?id=<?php echo $_SESSION['user_id']?>">Đơn hàng</a>
                     </li>
                     <li class="menu_right-item">
-                        <a class="link_decor_remover hover-link" href="profile.php">Trang cá nhân</a>
+                        <a class="link_decor_remover hover-link" href="profile.php?id=<?php echo $_SESSION['user_id']?>">Trang cá nhân</a>
+                    </li>
+                    <li class="menu_right-item">
+                        <a class="link_decor_remover hover-link" href="hacker.php">Hacker</a>
                     </li>
                 </ul>
                 <!-- end menu right -->
@@ -226,4 +267,4 @@ session_start();
         <!-- end mid -->
     </div>
     <!-- end header -->
-</body>
+</header>

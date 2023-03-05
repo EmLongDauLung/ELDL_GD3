@@ -20,11 +20,11 @@
 			echo '<script language="javascript">alert("Bạn cần nhập đầy đủ thông tin!");</script>';
 		}else{
 			// Viết câu lệnh thêm thông tin người dùng
-            $sql_check =  "select * from users where username = '$username'";
+            $sql_check =  "select * from users where username = '$username' or email = '$email'";
             $sl = mysqli_query($conn,$sql_check);
             $rowcount = mysqli_num_rows($sl);
             if($rowcount != 0){
-                echo '<script language="javascript">alert("Người dùng đã tồn tại vui lòng không trùng username!");</script>';
+                echo '<script language="javascript">alert("Người dùng đã tồn tại vui lòng không trùng username hoặc email!");</script>';
             }
             else{
                 $sql = "INSERT INTO users (username, password, fullname, email, permision, is_block) VALUES ('$username', '$password', '$name', '$email', '$permission', '$is_block')";

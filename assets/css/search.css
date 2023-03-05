@@ -1,0 +1,11 @@
+.container_search{
+    width: 80%;
+    height: auto;
+    margin: 60px auto;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between; */
+}
+.products_search{
+    margin: 10px 0;
+}

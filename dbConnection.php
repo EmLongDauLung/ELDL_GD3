@@ -1,15 +1,15 @@
 <?php
 class dbConnection
 {
-    private $servername = "127.0.0.1:3306";
+    // private $servername = "localhost";
+    // private $username = "root";
+    // private $password = "eldl@123";
+    // private $dbname = "store";
+
+    private $servername = "localhost";
     private $username = "root";
     private $password = "eldl";
     private $dbname = "botstore_test";
-
-    // private $servername = "host188.vietnix.vn";
-    // private $username = "botstore";
-    // private $password = "[0R8sdG8Zj0X!u";
-    // private $dbname = "botstore_shop";
 
     public function __construct()
     {
